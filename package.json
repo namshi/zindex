@@ -4,7 +4,7 @@
   "description": "Data indexing and tranforming libray",
   "main": "index.js",
    "bin": {
-    "clusterjs": "bin/zindex.js"
+    "zindex": "bin/zindex.js"
   },
   "dependencies": {
     "amqp": "0.2.4",
