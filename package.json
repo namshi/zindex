@@ -28,7 +28,8 @@
     "chai": "3.3.0"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "postinstall": "node lib/config"
   },
   "repository": {
     "type": "git",
