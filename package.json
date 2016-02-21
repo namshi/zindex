@@ -1,9 +1,9 @@
 {
   "name": "zindex",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Data indexing and tranforming libray",
   "main": "index.js",
-   "bin": {
+  "bin": {
     "zindex": "bin/zindex.js"
   },
   "dependencies": {
@@ -43,8 +43,12 @@
   ],
   "author": "Luciano Colosio <unlucio@gmail.com>, Alessandro Nadalin<alessandro.nadalin@gmail.com>",
   "contributors": [
-    {"name": "Alessandro Cinelli"},
-    { "name": "Filippo de Santis"}
+    {
+      "name": "Alessandro Cinelli"
+    },
+    {
+      "name": "Filippo de Santis"
+    }
   ],
   "license": "MIT",
   "bugs": {
