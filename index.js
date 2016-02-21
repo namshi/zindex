@@ -11,13 +11,13 @@ global.include = function(path) {
 /**
  * Module dependencies.
  */
-require('log-timestamp');
 var zindex = require('commander');
 var commands = include('commands');
 var config = include('config');
 var lockFile = require('lockfile');
+var config = require('./lib/config');
 
-global.lockfile = require('path').join(__dirname, config.get('lockfile.name'));
+global.lockfile = require('path').join(config.get('rootDir'), config.get('lockfile.name') || 'zlib.lock');
 
 function lock() {
   console.log('Lock:: lockfile');
