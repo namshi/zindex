@@ -109,7 +109,7 @@ between one data source to N backends.
 With *bootstrapping* we indicate the act of building a backend from scratch.
 This commands works only on backends that expose a "bootstrap" function.
 If the backend does not have one, it just does nothing.
-
+```
 ~/projects/myIndexer$ ./node_modules/zindex/bin/zindex.js bootstrap --help
 
   Usage: bootstrap [options]
