@@ -1,0 +1,53 @@
+{
+  "name": "zindex",
+  "version": "1.0.0",
+  "description": "Data indexing and tranforming libray",
+  "main": "index.js",
+   "bin": {
+    "clusterjs": "bin/zindex.js"
+  },
+  "dependencies": {
+    "amqp": "0.2.4",
+    "bluebird": "3.0.6",
+    "camelize": "1.0.0",
+    "commander": "2.9.0",
+    "highland": "2.6.0",
+    "js-yaml": "3.5.3",
+    "lockfile": "1.0.1",
+    "lodash": "4.5.0",
+    "moment": "2.11.2",
+    "mysql2": "0.15.8",
+    "node-nmconfig": "0.2.0",
+    "node-nmlogger": "0.0.2",
+    "proxyquire": "^1.7.3",
+    "swig": "1.4.2",
+    "vpo": "2.0.0"
+  },
+  "devDependencies": {
+    "mocha": "2.3.3",
+    "chai": "3.3.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/namshi/zindex.git"
+  },
+  "keywords": [
+    "data",
+    "stream",
+    "index",
+    "transform"
+  ],
+  "author": "Luciano Colosio <unlucio@gmail.com>, Alessandro Nadalin<alessandro.nadalin@gmail.com>",
+  "contributors": [
+    {"name": "Alessandro Cinelli"},
+    { "name": "Filippo de Santis"}
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/namshi/zindex/issues"
+  },
+  "homepage": "https://github.com/namshi/zindex#readme"
+}
