@@ -12,12 +12,12 @@ global.include = function(path) {
  * Module dependencies.
  */
 var zindex = require('commander');
-var commands = include('commands');
 var config = include('config');
+var commands = include('commands');
 var lockFile = require('lockfile');
 var config = require('./lib/config');
 
-global.lockfile = require('path').join(config.get('rootDir'), config.get('lockfile.name') || 'zlib.lock');
+global.lockfile = require('path').join(config.get('rootDir'), config.get('lockfile.name') || 'zindex.lock');
 
 function lock() {
   console.log('Lock:: lockfile');
