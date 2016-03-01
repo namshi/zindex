@@ -20,7 +20,6 @@
     "node-nmconfig": "git+ssh://git@github.com/namshi/node-nmconfig.git#packageConfig",
     "node-nmlogger": "0.0.2",
     "proxyquire": "^1.7.3",
-    "superagent": "^1.8.0-beta.2",
     "swig": "1.4.2",
     "vpo": "2.0.0"
   },
