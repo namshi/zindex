@@ -196,7 +196,7 @@ function transform(product, options) {
 }
 
 module.exports = function(products, options) {
-  return data.each(function(product) {
+  return products.map(function(product) {
     return transform(product, options);
   });
 };
