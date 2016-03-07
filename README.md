@@ -361,8 +361,7 @@ in one fo the 2 things (or a combination of them).
 Depending on your data, what Zindex provides might not be enough to save you from the deadly threat of
 [blocking](https://github.com/namshi/coding-standards/blob/master/javascript.md#golden-rule-never-block).
 Let's say your final data need to be enriched by another source (the ERP for example).
-In that case we strongly suggest you to leverage on promises(through
-[bluebird](https://www.npmjs.org/package/bluebird)) that can be conveniently fed back into Highland Stream and everything goes back to normal :)
+In that case we strongly suggest you to leverage on promises that can be conveniently fed back into Highland Stream and everything goes back to normal :)
 
 #### Options
 
