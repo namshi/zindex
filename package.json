@@ -1,6 +1,6 @@
 {
   "name": "zindex",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Data indexing and tranforming libray",
   "main": "index.js",
   "bin": {
