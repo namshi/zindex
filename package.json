@@ -8,8 +8,6 @@
   },
   "dependencies": {
     "amqp": "0.2.4",
-    "bluebird": "3.0.6",
-    "camelize": "1.0.0",
     "commander": "2.9.0",
     "highland": "2.6.0",
     "js-yaml": "3.5.3",
@@ -19,12 +17,12 @@
     "mysql2": "0.15.8",
     "node-nmconfig": "1.0.0",
     "node-nmlogger": "0.0.2",
-    "proxyquire": "^1.7.3",
     "swig": "1.4.2",
     "vpo": "2.0.0"
   },
   "devDependencies": {
     "mocha": "2.3.3",
+    "proxyquire": "1.7.3",
     "chai": "3.3.0"
   },
   "scripts": {
