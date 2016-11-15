@@ -17,7 +17,7 @@
     "lodash": "4.5.0",
     "moment": "2.11.2",
     "mysql2": "0.15.8",
-    "node-nmconfig": "1.0.0",
+    "node-nmconfig": "1.1.0",
     "node-nmlogger": "0.0.2",
     "proxyquire": "^1.7.3",
     "swig": "1.4.2",
