@@ -1,3 +1,5 @@
 #!/usr/bin/env node
 
-var zindex = require('../index.js');
+var zindex = require('../lib/zindex.js');
+
+module.exports = zindex;
