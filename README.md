@@ -3,8 +3,6 @@
 
 # Zindex
 
-[![Build Status](https://magnum.travis-ci.com/namshi/zindex.svg?token=MxqAgNuVLsuCrtxWfKzR&branch=master)](https://magnum.travis-ci.com/namshi/zindex)
-
 Namshi's indexer: a central place to work with
 storage engines and sync data here and there.
 
@@ -671,6 +669,3 @@ every time :)
 
 Tests are run through mocha, you can simply run
 `npm test`.
-
-The build is continuously run on
-[travis](https://magnum.travis-ci.com/namshi/zindex) as well.
