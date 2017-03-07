@@ -3,14 +3,12 @@
 
 # Zindex
 
-[![Build Status](https://magnum.travis-ci.com/namshi/zindex.svg?token=MxqAgNuVLsuCrtxWfKzR&branch=master)](https://magnum.travis-ci.com/namshi/zindex)
-
 Namshi's indexer: a central place to work with
-storage engines and syncing data here and there.
+storage engines and sync data here and there.
 
 Zindex is a very simple library that, at its core,
 simply fetches some data from a **source** and
-indexes them in **backends**.
+indexes it in **backends**.
 
 ## Installation
 
@@ -36,7 +34,7 @@ var zindex = require('zindex');
 
 > PROTIP
 >
-> You can create your very own command by putting this in yuor own javascript file:
+> You can create your very own command by putting this in your own javascript file:
 >
 > ```javascript
 > // example run.js
@@ -49,23 +47,23 @@ var zindex = require('zindex');
 
 ### Configuring
 
-Zindex by default will look for scripts inside a `indexers` and a `watchers` in your project's directory.
+Zindex by default will look for scripts inside an `indexers` and a `watchers` directory in your project.
 
-Hoever you can configure these path as you best wish since we're including [`nm-config`](https://github.com/namshi/node-nmconfig).
-The Avvailable options are:
+However, you can configure these paths as you wish, since we're including [`nm-config`](https://github.com/namshi/node-nmconfig).
+The Available options are:
 
 ```yaml
 dirs:
   base: './src'
 ```
-Will tell to `zindex` to look for both `indexers` and watchers under your projects `src/` directory
+Will tell `zindex` to look for both `indexers` and `watchers` under your project's `src/` directory
 
 ```yaml
 dirs:
   indexers: './foo/index'
   watchers: './bar/watch'
 ```
-Will cause `zindex` to search for  `indexers` inside the `foo/index` directory and for watchers inside `bar/watch`
+Will cause `zindex` to search for  `indexers` inside the `foo/index` directory and for `watchers` inside `bar/watch`
 
 > PROTIP
 >
@@ -107,8 +105,8 @@ between one data source to N backends.
 ### Bootstrapping
 
 With *bootstrapping* we indicate the act of building a backend from scratch.
-This commands works only on backends that expose a "bootstrap" function.
-If the backend does not have one, it just does nothing.
+This command works only on backends that expose a "bootstrap" function.
+If the backend does not have a "bootstrap" function, nothing is done.
 ```
 ~/projects/myIndexer$ ./node_modules/zindex/bin/zindex.js bootstrap --help
 
@@ -127,7 +125,7 @@ If the backend does not have one, it just does nothing.
 With *Sourcing* we indicate the base indexing action:
 fetching data from a *Source*, ie: a mysql table
 
-Zindex will look by default look for indexers in you local `indexers` folder.
+Zindex will look by default for indexers in your local `indexers` folder.
 
 In order to do so, you simply need to create a
 directory in your `indexers` folder with the
@@ -145,20 +143,20 @@ var shops = include('storages/mysql');
 var path  = require('path');
 
 module.exports = function(options) {
-  var products = mysql.query('severId', 'SELECT * FROM db.products');
+  var products = mysql.query('serverId', 'SELECT * FROM db.products');
   return {
     data: products,
     options: {myProperty: 'value'}
   };
 };
 ```
-**the return value will be further explained below in the [`Data format`](#dataFormat) section**
+**the returned value will be further explained below in the [`Data format`](#dataFormat) section**
 
 > PROTIP
 >
 > Use the included mysql helper (`storages/mysql`),
-> it will manage connections etc for you.
-> `severId` will be the key for the configure connections
+> it will manage connections, etc. for you.
+> `serverId` will be the key to configure connections
 > in the config files.
 >
 > ```yml
@@ -181,7 +179,7 @@ your data objects.
 At this point, once the data has been extracted from
 the source, you might want to apply some transformations,
 like renaming a boolean field to `TRUE` or `FALSE` and so on:
-to do so zindex will look for a `transformer.js` script inside
+To do so, zindex will look for a `transformer.js` script inside
 `indexer/ENTITY/`.
 
 An example `transformer.js` would look like:
@@ -204,16 +202,16 @@ module.exports = function(products, options) {
 
 > PROTIP
 >
-> As you see we define a `transform()` function out of the exported lamba:
-> this is to allow a better optimization from V8
+> As you can see, we define a `transform()` function out of the exported lamba:
+> this is to allow better optimization from V8
 > since in this place we're likely touching lots of objects and deopt
-> code might badly impact both memory usage and performances.
+> code might badly impact both memory usage and performance.
 
 To ease your life, zindex will transform the data
-it got from the source to an "[Highland](http://highlandjs.org/) Stream"
+it gets from the source to a "[Highland](http://highlandjs.org/) Stream"
 object.
 
-Having an Highland Stream means you can do stuff
+Having a Highland Stream means you can do stuff
 like this:
 
 
@@ -223,7 +221,7 @@ return products.filter(function(product){
 }).take(10);
 ```
 
-As you see an observable is a simple collection
+As you can see, an observable is a simple collection
 which you can chunk, filter, etc.
 
 In the example above we are simply filtering
@@ -233,16 +231,16 @@ which have a price higher than 100.
 #### Persisting
 
 *Persisting* is the last and final step of our indexing process:
-here we save the data were they need to be saved!
+Here we save the data were it needs to be saved!
 
 The data is then fed to what we call "backends":
-Zindex looks for them scripts under
+Zindex looks for the scripts under
 `indexer/ENTITY/backends` and will send the
-data to each one of them so they can be be stored in each
+data to each one so they can be be stored in each
 backend; think of your backends as different storage systems:
-for example you might want to sync products in a mysql table
+for example you might want to sync products in a mysql table,
 and in redis, which means you will create two backends, one called
-`products_table.js` and the other one called `redis.js`.
+`products_table.js`, and the other one called `redis.js`.
 
 If we create a file called `redis.js` under
 `indexer/products/backends` and write something like:
@@ -259,7 +257,7 @@ module.exports = function(data) {
 };
 ```
 
-We will effectively have setup a sync of the products
+We will effectively have set up a sync of the products
 from a MySQL table to a redis hash.
 
 > PROTIP
@@ -322,13 +320,13 @@ var results = [{
 >
 > Your source, as data, can return a stream!
 > And everything can be wrapped into a promise (or more).
-> Actually Zindex its self internally uses promisses and streams
+> Actually, Zindex internally uses promises and streams
 > as we'll see [later on](#asyncLoading)
 
 Even though sources might return either an **array** of objects
 or a **stream**, transformers and backends will always receive the data
 as a first argument in the form of a `Highland Stream object`,
-and all other informations as `options`:
+and all other information as `options`:
 
 ``` javascript
 var backend = function(data, options) {
@@ -346,23 +344,23 @@ var backend = function(data, options) {
 
 #### Async loading: behind the scenes <a name="asyncLoading"></a>
 
-As you porbably noticed we always and up having an `Highland Stream` in our hands,
+As you probably noticed we always and up having a `Highland Stream` in our hands,
 and this happens asyncronusly even if we're returning an object.
 Under the hood Zindex uses streams and promises to avoid blocking the main thread,
 and since it likes them so much it will always try to mangle what you give to it
-in one fo the 2 things (or a combination of them).
+in one of 2 things (or a combination of them).
 
 > In depth for maniacs; Anatomy of processing a source:
 >
-> Since your data can come either from a single simple table, or from many different palces,
+> Since your data can come either from a single simple table, or from many different places,
 > what Zindex would really like to have are either promises or streams, or lists of them as
 > data property for the returned object.
 
 Depending on your data, what Zindex provides might not be enough to save you from the deadly threat of
 [blocking](https://github.com/namshi/coding-standards/blob/master/javascript.md#golden-rule-never-block).
-Let's say your final data need to be enriched by another source (the ERP for example).
-In that case we strongly suggest you to leverage on promises(through
-[bluebird](https://www.npmjs.org/package/bluebird)) that can be conveniently fed back into Highland Stream and everything goes back to normal :)
+Let's say your final data needs to be enriched by another source (the ERP for example).
+In that case we strongly suggest you to leverage promises(through
+[bluebird](https://www.npmjs.org/package/bluebird)) that can be conveniently fed back into a Highland Stream and everything goes back to normal :)
 
 #### Options
 
@@ -374,8 +372,8 @@ up sync times.
 
 
 #### Templating
-To ease your life you might consider using templates for you queries.
-For your teplating needs we provide an included [template compiler](#templateCompiler)
+To ease your life you might consider using templates for your queries.
+For your templating needs a [template compiler](#templateCompiler) is included
 
 ### Realtime indexing
 
@@ -403,12 +401,12 @@ info: Indexing products in backend "sample"
 indexing: [ { product_id: 2567, name: 'shoes' } ]
 ```
 
-Demons will need an entity and a priority, so that
+Daemons will need an entity and a priority, so that
 they will be able to receive specific updates:
 the queues will take the name  `indexer.ENTITY.PRIORITY`, for
 example `indexer.products.1`.
 
-What the demon does is to simply call the indexer, passing it
+What the daemon does is simply call the indexer, pass it
 the entity and the ID of the update. Then the indexer runs with
 the given options; for example, you can customize your
 queries using something like:
@@ -438,11 +436,11 @@ FROM myDb.products
 ```
 
 Watchers are what keeps an eye on data changes and
-broadcast messages based on the obtained data: as we saw,
+broadcasts messages based on the obtained data: as we saw,
 realtime indexing will consume messages that come through
 RabbitMQ and the watchers are the ones responsible for keeping
 an eye on the DB and, as soon as a record gets updated,
-send a message to Rabbit.
+send a message to RabbitMQ.
 
 A watcher provides the `watch()` method including the
 actual logic to watch a `source`. A `notify` function
@@ -452,7 +450,7 @@ You can specify an `entity` name for the watcher if the
 "watcher file" (ie. items.js) has a different name from your entity ("items").
 
 Long story short: when the watcher finds that a record gets updated
-it calls `notify(entity, id [, priority])` which will send a message to Rabbit
+it calls `notify(entity, id [, priority])` which will send a message to RabbitMQ
 
 watcher example:
 
@@ -475,9 +473,9 @@ module.exports = {
 
 
 Depending on the source of your data it might need to poll,
-in that case you can use on javascript's `setInterval()` but bare in mind is
-not guaranteed to be accurate So you might need to detect and adjust the time-shift error.
-We do provide some [support objects](#wSources) capable to deal with this as we'll see later.
+in that case you can use javascript's `setInterval()` but bear in mind, accuracy is
+not guaranteed, so you might need to detect and adjust the time-shift error.
+We do provide some [support objects](#wSources) capable of dealing with this as we'll see later.
 
 Once you create a new watcher simply include
 it in the `watchers/` directory and
@@ -493,13 +491,13 @@ All the watchers will run automatically if no `-E` is provided.
 >
 > Running multiple watchers at once isn't a great idea and it
 > is allowed mainly for debugging purposes. If one watcher goes down
-> it takes all the other ones with him -- so yeah be careful :)
+> all the others go down too -- so, yeah, be careful :)
 
 #### Watchers' Sources: keeping an eye on multiple things
 
 The root of a watcher is a [`Source` object](#watchersBaseSource)
 
-Here is an example watcher using a custom source extending the [base one](#watchersBaseSource):
+Here is an example of a watcher using a custom source extending the [base one](#watchersBaseSource):
 
 ```javascript
 module.exports = {
@@ -530,26 +528,26 @@ module.exports = {
 }
 ```
 
-For you convenience we build a [mysql abstract source](#watchersAbstractMysql) that will ease your life :)
+For your convenience we build a [mysql abstract source](#watchersAbstractMysql) that will ease your life :)
 
 ## Zindex toolkit: <a name="toolKit"></a>
 
-Sindex exports a special `include()` function giving access to a series
+Zindex exports a special `include()` function giving access to a series
 of provided goodies to ease your indexing needs:
 
 ### Config <a name="ampqHelper"></a>
 
 `var config = include('config');`
 this will return a [`reconfig`](https://github.com/namshi/reconfig) object
-gnerated by the underlying [`nm-config`](https://github.com/namshi/node-nmconfig)
+generated by the underlying [`nm-config`](https://github.com/namshi/node-nmconfig)
 
 
 ### Mysql Helper <a name="mysqlHelper"></a>
 
 `var mysql = include('storages/mysql');`
 
-This is an helper build on top of node's mysql library, it's aim is to conceal
-most of the cerramony you'd need ot do to connect and query a mysql database in
+This is a helper built on top of node's mysql library, its aim is to conceal
+most of the ceremony you would need to do, to connect and query a mysql database in
 a single convenient method:
 
 ``` javascript
@@ -562,7 +560,7 @@ The possible params are the following:
 *options*: formatted data in case of a sql template.
 
 It will also take care of making your communication towards the database simpler
-and more efficient, spawning N connecitons (as set in the config file), queueing
+and more efficient, spawning N connections (as set in the config file), queueing
 your queries, and taking everything up or down upon need.
 
 > PROTIP
@@ -573,8 +571,8 @@ your queries, and taking everything up or down upon need.
 
 `var amqp = include('storages/amqp');`
 
-As by its name, this library will help you connectiong to an amqp queue (rabbit, for instance)
-To listen on a queue and get a message you smply need to do:
+As by its name, this library will help you connect to an amqp queue (rabbit, for instance)
+To listen on a queue and get a message you simply need to do:
 
 ```javascript
 amqp.listen(options).then(function() {
@@ -585,17 +583,17 @@ amqp.listen(options).then(function() {
 ```
 
 Zindex will figure out the correct queue for you based on the command's option
-received in consolle.
+received in the console.
 
-If you need to send a message you can use the [notifier](#notifier) library build
+If you need to send a message you can use the [notifier](#notifier) library built
 on top of this helper.
 
 ### Notifier <a name="notifier"></a>
 
 `var notifier = include('notifier');`
 
-It's the one automatically injected in all teh watchers, and it provides and handy way to push messages
-on the rabbit queues without all the cerramony.
+It's the one automatically injected in all the watchers, and it provides a handy way to push messages
+on the rabbit queues without all the ceremony.
 
 to queue a message simply do:
 
@@ -617,27 +615,27 @@ The `priority` param for the notification will effect only the current message.
 `var utils = include('utils');`
 
 [This](https://github.com/namshi/zindex/blob/master/lib/utils.js) little lib wraps and increments node's util module
-with some comodity functions.
+with some commodity functions.
 
-Among all you might watn to take a look to:
+You might want to take a look at:
 
 * stringToMoment(): dealing with date and times between humans and computers can be
-quite anoying so we choose to use [momentjs](http://momentjs.com/) to provide and easy way
-to teh use to specify times and intervals, and a ceveniente way for us to use it.
+quite annoying so we chose to use [momentjs](http://momentjs.com/) to provide an easy way
+to specify times and intervals, and a convenient way for us to use it.
 
-* prepareForBulkQuery(): you'll fine this littel function expeciallly usefull in your
+* prepareForBulkQuery(): you'll find this little function especially useful in your
 mysql backends. Give it a list of objects and it will transform them in an handy object easy
 to use with a sql template query to feed to our [helper](#mysqlHelper)
 
 * wrapInPromise(): wrap your data structure in a promise for you to carry around
-convenintly in async contexts.
+conveniently in async contexts.
 
 ### Logger <a name="logger"></a>
 
 `var logger = include('logger');`
 
 Our logger exposes a classic [winston](https://github.com/flatiron/winston) logging interface
-with some added config values as well as a graylog transport handy in the production enviroment.
+with some added config values as well as a graylog transport handy in the production environment.
 
 ### Graylog
 
@@ -671,6 +669,3 @@ every time :)
 
 Tests are run through mocha, you can simply run
 `npm test`.
-
-The build is continuosly run on
-[travis](https://magnum.travis-ci.com/namshi/zindex) as well.
